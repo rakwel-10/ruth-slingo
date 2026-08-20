@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slingo Financial Services — Protect What You've Built</title>
+<meta name="description" content="Educate. Empower. Create Legacy. Story-first financial strategy, road mapping your goals, and accessible education — Ruth Slingo helps you plan a life that outlives you.">
+
+<!--
+  ============================================================================
+  SLINGO FINANCIAL SERVICES — landing page
+  ============================================================================
+  Structure and copy follow Ruth's own document,
+  "protect what you've built. educate. empower. create legacy.pdf".
+  Brand colours sampled from her reel end-card. See BRIEF.md.
+
+  Type:  Fraunces (display) + DM Sans (body / UI).
+  Signature: "Your Financial Floor Plan" — the assessment drawn as a plan view,
+  which is Ruth's own idea in her words: 25 years an interior designer,
+  "learning how to look at the whole picture".
+
+  IMAGE SWAP LIST — every photo, all in /assets, each tagged "SWAP" below:
+    hero.jpg             hero photograph — Ruth's own 1920x1080 shot
+    logo-rs.png          the real RS monogram, white keyed to transparent
+    ruth-portrait.jpg    Ruth Slingo bio portrait — her own headshot
+    card-educate.jpg     "Let's talk about what's next?" card 1   (reel b-roll)
+    card-empower.jpg     card 2                                   (reel b-roll)
+    card-legacy.jpg      card 3                                   (reel b-roll)
+  Client originals are kept untouched in /assets/_source.
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    '#25135C',   // deep violet — dark bands, headings
+        violet: '#5819BC',   // brand purple — secondary actions, rules
+        mark:   '#6E18C0',   // logo mark purple
+        bright: '#7F47FD',   // bright violet — accents, the medallion field
+        lilac:  '#EDE4FB',   // the card fill from Ruth's document
+        mist:   '#F7F5FC',   // soft neutral section ground
+        gold:   '#D9A441',   // Ruth's CTA colour, and her medallion ring
+        body:   '#3E3459'    // body copy
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans:    ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  :root { --ink:#25135C; --violet:#5819BC; --bright:#7F47FD; --gold:#D9A441; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+  body { font-family: "DM Sans", system-ui, sans-serif; color:#3E3459; background:#fff; -webkit-font-smoothing: antialiased; }
+
+  /* Fraunces: soft old-style serif. SOFT 25 warms the terminals, WONK 0 switches
+     off the quirky alternates. It has true italics, so emphasis is real. */
+  .display { font-family:Fraunces, Georgia, serif; font-optical-sizing:auto; font-weight:600; font-variation-settings:"SOFT" 25, "WONK" 0; letter-spacing:-.005em; }
+  .display em, .display i { font-style:italic; font-weight:500; }
+
+  /* Small tracked uppercase label — every eyebrow, field label and callout. */
+  .label { font-size:.6875rem; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
+
+  /* Hairline rules that draw themselves in, like a plan being drafted. */
+  .rule { transform-origin:left center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .rule { transform:scaleX(0); animation: draw .7s cubic-bezier(.22,1,.36,1) forwards; }
+    @keyframes draw { to { transform:scaleX(1); } }
+    .reveal { opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1); }
+    .reveal.in { opacity:1; transform:none; }
+  }
+
+  :focus-visible { outline:2px solid var(--gold); outline-offset:3px; border-radius:2px; }
+
+  /* Buttons — gold is the "start something" action, exactly as in Ruth's document.
+     Violet is secondary. Nothing gets a gradient or a drop shadow. */
+  .btn-gold    { background:var(--gold); color:var(--ink); transition:background .25s ease; }
+  .btn-gold:hover { background:#C28F2C; }
+  .btn-white   { background:#fff; color:var(--ink); transition:background .25s ease; }
+  .btn-white:hover { background:#EDE4FB; }
+  .btn-violet  { background:var(--violet); color:#fff; transition:background .25s ease; }
+  .btn-violet:hover { background:var(--ink); }
+  .btn-outline { border:1.5px solid var(--ink); color:var(--ink); transition:background .25s ease, color .25s ease; }
+  .btn-outline:hover { background:var(--ink); color:#fff; }
+  .btn-ghost   { border:1.5px solid rgba(255,255,255,.5); color:#fff; transition:background .25s ease, border-color .25s ease; }
+  .btn-ghost:hover { background:rgba(255,255,255,.12); border-color:#fff; }
+
+  /* "What's next?" cards — hairline plate, photograph eases in on hover. */
+  .card { position:relative; background:#fff; border:1px solid #E6DFF5; overflow:hidden;
+          transition:border-color .35s ease; }
+  .card:hover { border-color:#CDBFEC; }
+  @media (prefers-reduced-motion: reduce) {
+    .card img { transition:none !important; }
+    .card:hover img { transform:none !important; }
+  }
+
+  /* Spec tile — hairline card, no shadow; hover draws a rule. */
+  .tile { position:relative; background:#fff; border:1px solid #E6DFF5; transition:border-color .3s ease; }
+  .tile::after { content:""; position:absolute; left:0; bottom:-1px; height:2px; width:0; background:var(--violet); transition:width .35s cubic-bezier(.22,1,.36,1); }
+  .tile:hover { border-color:#CDBFEC; }
+  .tile:hover::after { width:100%; }
+
+  input, textarea { font-family:"DM Sans", sans-serif; }
+  .field { border:1px solid #DDD3F0; background:#fff; }
+  .field:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(88,25,188,.12); outline:none; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ========================= NAV ========================= -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E9E2F7]">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+    <div class="flex items-center justify-between h-[72px]">
+
+      <a href="#home" class="flex items-center gap-3 shrink-0">
+        <img src="assets/logo-rs.png" alt="" class="h-11 w-auto"> <!-- SWAP -->
+        <span class="leading-none">
+          <span class="block display text-[19px] tracking-[.14em] font-semibold text-ink">SLINGO</span>
+          <span class="block label text-[9px] tracking-[.28em] text-violet mt-[3px]">Financial Services</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary">
+        <a href="#home"         class="label text-ink/70 hover:text-violet transition">Home</a>
+        <a href="#about"        class="label text-ink/70 hover:text-violet transition">About</a>
+        <a href="#services"     class="label text-ink/70 hover:text-violet transition">Services</a>
+        <a href="#assessment"   class="label text-ink/70 hover:text-violet transition">Resources</a>
+        <a href="#testimonials" class="label text-ink/70 hover:text-violet transition">Testimonials</a>
+        <a href="#faq"          class="label text-ink/70 hover:text-violet transition">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="#consult" class="hidden sm:inline-flex btn-violet label px-6 py-3">Schedule consultation</a>
+        <button id="navToggle" class="lg:hidden p-2 -mr-2 text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="navDrawer" class="lg:hidden hidden border-t border-[#E9E2F7] bg-white">
+    <nav class="mx-auto max-w-[1300px] px-5 sm:px-8 py-5 flex flex-col gap-1" aria-label="Mobile">
+      <a href="#home"         class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Home</a>
+      <a href="#about"        class="label py-3 text-ink/80 border-b border-[#F1ECFA]">About</a>
+      <a href="#services"     class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Services</a>
+      <a href="#assessment"   class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Resources</a>
+      <a href="#testimonials" class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Testimonials</a>
+      <a href="#faq"          class="label py-3 text-ink/80">FAQ</a>
+      <a href="#consult" class="btn-violet label px-6 py-3 text-center mt-4">Schedule consultation</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ========================= HERO =========================
+     A 20px white frame on all four sides, then the photograph. Still one
+     screen tall overall: 72px nav + 20px + plate + 20px. The copy inside sits
+     on the same 1300px grid as every section below. -->
+<section id="home" class="bg-white pt-[92px] px-5 pb-5">
+  <div class="relative w-full overflow-hidden bg-[#140829] text-white">
+
+    <div class="relative sm:absolute sm:inset-0">
+      <img src="assets/hero.jpg" alt="Ruth Slingo"
+           class="w-full h-[40svh] min-h-[260px] max-h-[380px] object-cover object-[60%_center] sm:h-full sm:max-h-none sm:object-[66%_center] lg:object-center"> <!-- SWAP -->
+    </div>
+
+    <div class="relative flex items-end lg:items-center pt-9 pb-12 sm:pt-16 sm:pb-14 lg:py-16
+                sm:min-h-[calc(100svh-112px)]">
+      <div class="mx-auto w-full max-w-[1300px] px-5 sm:px-8">
+        <div class="max-w-[32rem] lg:max-w-[42rem]">
+          <h1 class="display leading-[1.02] text-[clamp(2.07rem,5.63vw,3.87rem)]">
+            Protect what<br>you've built.
+          </h1>
+          <p class="display mt-4 leading-[1.15] text-[clamp(1.32rem,3.26vw,2.42rem)]">
+            Educate. <span class="text-gold">Empower.</span> <em class="font-normal">Create Legacy</em>
+          </p>
+
+          <span class="rule block h-px w-40 bg-white/40 my-7 sm:my-8" style="animation-delay:.2s"></span>
+
+          <p class="text-[1.0625rem] sm:text-[1.125rem] leading-[1.75] text-white/85 max-w-[46ch]">
+            Making and defining you a road map for what it means to empower, build wealth, and create a
+            legacy. Through story-first financial strategy, road mapping your goals, and accessible
+            education — Ruth's here to help you plan a life that outlives you.
+          </p>
+
+          <div class="mt-9 sm:mt-10">
+            <a href="#assessment" class="btn-gold label px-9 py-4 inline-flex items-center gap-2">
+              Get started <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LET'S TALK ABOUT WHAT'S NEXT? =================
+     Cards: hairline plate, photograph that eases in on hover, copy set left,
+     and the original purple pill button. -->
+<section class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <h2 class="display text-ink text-center text-[clamp(1.85rem,4.4vw,2.99rem)] leading-[1.1] mb-14 reveal">
+      Let's talk about what's next?
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <article class="card group flex flex-col">
+        <div class="overflow-hidden">
+          <img src="assets/card-educate.jpg" alt="" class="w-full aspect-[4/3] object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"> <!-- SWAP -->
+        </div>
+        <div class="p-7 sm:p-8 flex flex-col flex-1">
+          <h3 class="display text-ink text-[1.5rem] leading-none">Educate</h3>
+          <p class="text-[.95rem] leading-[1.75] text-body mt-4">
+            Saving and planning alone can feel overwhelming without the right knowledge and guidance.
+          </p>
+          <p class="text-[.95rem] leading-[1.75] text-body mt-4">
+            That's why Ruth offers a discovery call, virtually through ZOOM, to equip you with practical tools and strategies for lasting financial confidence.
+          </p>
+          <a href="educate.html" class="btn-violet label rounded-full px-7 py-3 text-center mt-auto self-center">Learn more</a>
+        </div>
+      </article>
+
+      <article class="card group flex flex-col">
+        <div class="overflow-hidden">
+          <img src="assets/card-empower.jpg" alt="" class="w-full aspect-[4/3] object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"> <!-- SWAP -->
+        </div>
+        <div class="p-7 sm:p-8 flex flex-col flex-1">
+          <h3 class="display text-ink text-[1.5rem] leading-none">Empower</h3>
+          <p class="text-[.95rem] leading-[1.75] text-body mt-4">
+            Are you looking to not only grow your portfolio, but also have clarity and confidence? In today's competitive landscape, it's not enough to simply know numbers — you need strategies and guidance to take what you know and put it into action.
+          </p>
+          <!-- NOTE: this sentence stops mid-way in Ruth's document. Completed here; confirm wording. -->
+          <p class="text-[.95rem] leading-[1.75] text-body mt-4">
+            Through personalized coaching, you'll gain the confidence and accountability to keep moving, month after month.
+          </p>
+          <a href="empower.html" class="btn-violet label rounded-full px-7 py-3 text-center mt-auto self-center">Learn more</a>
+        </div>
+      </article>
+
+      <article class="card group flex flex-col">
+        <div class="overflow-hidden">
+          <img src="assets/card-legacy.jpg" alt="" class="w-full aspect-[4/3] object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"> <!-- SWAP -->
+        </div>
+        <div class="p-7 sm:p-8 flex flex-col flex-1">
+          <h3 class="display text-ink text-[1.5rem] leading-none">Create Legacy</h3>
+          <p class="text-[.95rem] leading-[1.75] text-body mt-4">
+            Slingo Financial was founded by Ruth Slingo in 2019 as Ideas by Ruth, to create, implement, and review your financial plans.
+          </p>
+          <p class="text-[.95rem] leading-[1.75] text-body mt-4">
+            Read Ruth's journey through the financial world, or schedule time with her one on one.
+          </p>
+          <a href="create-legacy.html" class="btn-violet label rounded-full px-7 py-3 text-center mt-auto self-center">Learn more</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROTECT WHAT MATTERS MOST™ — ASSESSMENT ============ -->
+<section id="assessment" class="bg-ink text-white py-20 sm:py-28">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <div class="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-start">
+
+      <!-- Left: Ruth's copy -->
+      <div class="reveal">
+        <h2 class="display text-[clamp(1.85rem,4.05vw,2.73rem)] leading-[1.08]">
+          Protect What Matters Most<span class="align-super text-[.4em]">™</span>
+        </h2>
+        <p class="display text-gold text-[clamp(1.14rem,2.46vw,1.67rem)] leading-tight mt-2">
+          Financial Readiness Assessment
+        </p>
+
+        <span class="rule block h-px w-40 bg-white/35 my-8"></span>
+
+        <p class="text-[1.0625rem] leading-[1.75] text-white/85">
+          In just 2 minutes, you could see what your financial future is missing.
+        </p>
+        <p class="text-[.975rem] leading-[1.75] text-white/70 mt-4">
+          You work hard for your money. But is your money working hard enough to protect your family,
+          your home, your future, and the legacy you're building?
+        </p>
+
+        <p class="label text-gold mt-8 mb-4">In just 2 minutes, you'll discover</p>
+        <ul class="space-y-3">
+          <li class="flex gap-3 text-[.975rem] leading-[1.6] text-white/80"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0 mt-1"></i> Where you're already strong</li>
+          <li class="flex gap-3 text-[.975rem] leading-[1.6] text-white/80"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0 mt-1"></i> The areas that may need more attention</li>
+          <li class="flex gap-3 text-[.975rem] leading-[1.6] text-white/80"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0 mt-1"></i> Your top financial priorities</li>
+          <li class="flex gap-3 text-[.975rem] leading-[1.6] text-white/80"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0 mt-1"></i> Simple next steps you can take</li>
+          <li class="flex gap-3 text-[.975rem] leading-[1.6] text-white/80"><i data-lucide="check" class="w-4 h-4 text-gold shrink-0 mt-1"></i> Your personalized Financial Protection &amp; Legacy Scorecard</li>
+        </ul>
+
+        <p class="text-[.975rem] leading-[1.75] text-white/80 mt-8">
+          We look at six important areas:<br>
+          <strong class="text-white font-medium">Family. Home. Children. Debt. Wealth. Retirement.</strong>
+        </p>
+
+        <p class="text-[.975rem] leading-[1.9] text-white/60 mt-6">
+          No complicated financial jargon.<br>
+          No pressure.<br>
+          No cookie-cutter recommendations.
+        </p>
+        <p class="text-[.975rem] leading-[1.75] text-white/80 mt-6 max-w-[46ch]">
+          Just a simple way to understand where you are today and what may be worth looking at next.
+        </p>
+
+        <p class="display text-[1.23rem] leading-snug mt-8">
+          Protect your money.<br>Secure your future.<br><span class="text-gold">Create your legacy.</span>
+        </p>
+
+        <!-- SWAP: point at the live assessment (GoHighLevel / Typeform) when it exists -->
+        <a href="#consult" class="btn-gold label px-9 py-4 inline-flex items-center gap-2 mt-9">
+          Take the assessment <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Right: Ruth's scorecard artwork, and nothing else -->
+      <div class="lg:self-center">
+        <img src="assets/scorecard.png"
+             alt="The Financial Protection and Legacy Scorecard — a four-page personalised report"
+             class="w-full max-w-[560px] lg:max-w-none mx-auto h-auto"> <!-- SWAP -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= RUTH SLINGO ========================= -->
+<section id="about" class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-12 lg:gap-16">
+
+      <div>
+        <h2 class="display text-ink text-[clamp(2.29rem,5.28vw,3.7rem)] leading-none">Ruth Slingo</h2>
+        <span class="rule block h-px w-32 bg-violet/50 my-8"></span>
+
+        <p class="text-[1.0625rem] leading-[1.8] text-body">
+          Hi, I'm Ruth. I believe everyone deserves to know what's possible with the money they
+          already have.
+        </p>
+
+        <p class="display text-ink text-[1.19rem] leading-[1.5] italic mt-6 border-l-2 border-gold pl-6">
+          My mission is to help people see the whole picture, understand their options, and create a
+          financial plan that actually fits their life.
+        </p>
+
+        <div class="mt-8 space-y-5 text-[1rem] leading-[1.8] text-body max-w-[62ch]">
+          <p>
+            I'm one of nine kids, raised by parents who were ministers. With a family that big, there
+            wasn't a lot of extra. Hand-me-downs were normal, and as a little girl, getting 50 cents
+            for a chocolate milk at school felt like a big deal. Name-brand cereal or Fruit Roll-Ups?
+            That was a treat.
+          </p>
+          <p>
+            We knew how to make things work with what we had. But I didn't grow up learning how to
+            save, invest, or build wealth. There simply wasn't extra money to practice with.
+          </p>
+          <p class="text-ink font-medium">That stayed with me.</p>
+          <p>
+            I spent more than 25 years as an interior designer, learning how to look at the whole
+            picture, work with what was already there, and see possibilities other people might miss.
+          </p>
+          <p class="text-ink font-medium">Funny enough, that's exactly how I approach finances today.</p>
+          <p>
+            I help families look at everything together: debt, protection, retirement, taxes, college
+            planning, income, and the money they've already worked so hard to build. I've helped
+            people find ways to cut their scheduled debt payoff time in half without adding more to
+            their monthly budget, simply by helping their money work differently.
+          </p>
+          <p>
+            And that same philosophy shapes how I coach agents and entrepreneurs. I ask questions,
+            connect the dots, get creative, and help people see opportunities they may not have seen
+            on their own.
+          </p>
+        </div>
+
+        <blockquote class="mt-10 border-t border-ink/15 pt-8">
+          <p class="display text-ink text-[1.32rem] sm:text-[1.54rem] leading-[1.4] italic max-w-[36ch]">
+            Because I know what it feels like to grow up without a financial roadmap.
+          </p>
+          <p class="display text-violet text-[1.32rem] sm:text-[1.54rem] leading-[1.4] mt-2">
+            Today, I get to help other people create one.
+          </p>
+        </blockquote>
+      </div>
+
+      <div class="lg:pt-10 lg:sticky lg:top-[104px] lg:self-start">
+        <div class="relative w-[clamp(240px,66vw,360px)] mx-auto lg:mx-0 aspect-square rounded-full overflow-hidden ring-[6px] ring-gold/70 bg-ink/5">
+          <img src="assets/ruth-portrait.jpg" alt="Ruth Slingo" class="w-full h-full object-cover scale-[1.02]"> <!-- SWAP -->
+        </div>
+        <p class="label text-violet text-center lg:text-left mt-6 lg:ml-2">Founder · Slingo Financial Services</p>
+        <p class="text-[.95rem] leading-[1.75] text-body mt-3 max-w-[34ch] mx-auto lg:mx-0 text-center lg:text-left">
+          Founded in 2019 as Ideas by Ruth, now Slingo Financial Services.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================= SERVICES ========================= -->
+<section id="services" class="bg-mist py-20 sm:py-28 border-t border-ink/10">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <div class="max-w-[52ch] mb-14 reveal">
+      <span class="label text-violet">What we put in place</span>
+      <h2 class="display text-ink text-[clamp(1.76rem,3.52vw,2.51rem)] leading-[1.15] mt-4">
+        Six ways to protect what you've built.
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <article class="tile p-8">
+        <i data-lucide="shield-check" class="w-6 h-6 text-violet mb-6"></i>
+        <h3 class="display text-ink text-[1.19rem] mb-3">Life Insurance</h3>
+        <p class="text-[.95rem] leading-[1.75] text-body">Tailored coverage to safeguard your family, sized to what they'd actually need.</p>
+      </article>
+      <article class="tile p-8">
+        <i data-lucide="home" class="w-6 h-6 text-violet mb-6"></i>
+        <h3 class="display text-ink text-[1.19rem] mb-3">Mortgage Protection</h3>
+        <p class="text-[.95rem] leading-[1.75] text-body">Ensure your home stays covered, so a loss of income never becomes a loss of address.</p>
+      </article>
+      <article class="tile p-8">
+        <i data-lucide="graduation-cap" class="w-6 h-6 text-violet mb-6"></i>
+        <h3 class="display text-ink text-[1.19rem] mb-3">College Savings Plans</h3>
+        <p class="text-[.95rem] leading-[1.75] text-body">Smart strategies for your children's education that don't sacrifice your other goals.</p>
+      </article>
+      <article class="tile p-8">
+        <i data-lucide="trending-down" class="w-6 h-6 text-violet mb-6"></i>
+        <h3 class="display text-ink text-[1.19rem] mb-3">Debt-Free Planning</h3>
+        <p class="text-[.95rem] leading-[1.75] text-body">Sustainable paths to eliminate debt and protect assets, on your current budget.</p>
+      </article>
+      <article class="tile p-8">
+        <i data-lucide="landmark" class="w-6 h-6 text-violet mb-6"></i>
+        <h3 class="display text-ink text-[1.19rem] mb-3">Infinite Banking</h3>
+        <p class="text-[.95rem] leading-[1.75] text-body">Use life insurance policy structures to build liquidity you can borrow against.</p>
+      </article>
+      <article class="tile p-8">
+        <i data-lucide="piggy-bank" class="w-6 h-6 text-violet mb-6"></i>
+        <h3 class="display text-ink text-[1.19rem] mb-3">Tax-Free Retirement</h3>
+        <p class="text-[.95rem] leading-[1.75] text-body">Access your wealth in retirement without the tax surprises you didn't plan for.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= HOW IT WORKS =========================
+     The only numbered thing on the page, because it is the only sequence. -->
+<section class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <div class="max-w-[52ch] mb-14 reveal">
+      <span class="label text-violet">How it works</span>
+      <h2 class="display text-ink text-[clamp(1.76rem,3.52vw,2.51rem)] leading-[1.15] mt-4">
+        Three steps, and none of them start with a sales pitch.
+      </h2>
+    </div>
+
+    <ol class="grid md:grid-cols-3 gap-10 md:gap-8">
+      <li>
+        <div class="flex items-baseline gap-4 border-t-2 border-ink pt-5">
+          <span class="display text-violet text-[1.98rem] leading-none">01</span>
+          <h3 class="display text-ink text-[1.19rem]">Connect &amp; Discover</h3>
+        </div>
+        <p class="text-[.975rem] leading-[1.75] text-body mt-4">A short call to understand your family protection, retirement, or wealth goals — and what's worrying you most.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline gap-4 border-t-2 border-ink pt-5">
+          <span class="display text-violet text-[1.98rem] leading-none">02</span>
+          <h3 class="display text-ink text-[1.19rem]">Customize Your Plan</h3>
+        </div>
+        <p class="text-[.975rem] leading-[1.75] text-body mt-4">A tailored strategy built with trusted carriers and proven products, written in language you can repeat to your spouse.</p>
+      </li>
+      <li>
+        <div class="flex items-baseline gap-4 border-t-2 border-ink pt-5">
+          <span class="display text-violet text-[1.98rem] leading-none">03</span>
+          <h3 class="display text-ink text-[1.19rem]">Secure Your Future</h3>
+        </div>
+        <p class="text-[.975rem] leading-[1.75] text-body mt-4">Finalize your plan, then review it on a regular schedule so it keeps up with your life.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========================= TESTIMONIALS + CARRIERS ========================= -->
+<section id="testimonials" class="bg-mist py-20 sm:py-28 border-y border-ink/10">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <h2 class="display text-ink text-center text-[clamp(1.76rem,3.87vw,2.64rem)] leading-[1.12] mb-14 reveal">
+      What our clients have to say
+    </h2>
+
+    <!-- ==========================================================
+         PLACEHOLDER TESTIMONIALS. Ruth's document carries the Canva
+         template's recruitment-agency quotes, so these are stand-ins
+         written to the right subject. Replace with real, permissioned
+         client quotes before launch.
+         ========================================================== -->
+    <div class="grid md:grid-cols-3 gap-5">
+      <figure class="tile p-8">
+        <div class="flex gap-1 text-gold mb-5" aria-label="5 out of 5">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <blockquote class="text-[1.0625rem] leading-[1.7] text-ink">“Clear process and no pressure. Ruth explained my options until I actually understood them.”</blockquote>
+        <figcaption class="label text-body/60 mt-6">Placeholder · replace</figcaption>
+      </figure>
+      <figure class="tile p-8">
+        <div class="flex gap-1 text-gold mb-5" aria-label="5 out of 5">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <blockquote class="text-[1.0625rem] leading-[1.7] text-ink">“We came in worried about debt and left with a payoff date. Same budget, half the years.”</blockquote>
+        <figcaption class="label text-body/60 mt-6">Placeholder · replace</figcaption>
+      </figure>
+      <figure class="tile p-8">
+        <div class="flex gap-1 text-gold mb-5" aria-label="5 out of 5">
+          <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        </div>
+        <blockquote class="text-[1.0625rem] leading-[1.7] text-ink">“She never made me feel behind. She showed me what was there and what to do next.”</blockquote>
+        <figcaption class="label text-body/60 mt-6">Placeholder · replace</figcaption>
+      </figure>
+    </div>
+
+    <!-- Ruth's document has a "Carriers" heading with nothing under it yet. -->
+    <div class="mt-16 pt-10 border-t border-ink/12">
+      <p class="label text-body/60 mb-7">Carriers</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px bg-ink/10 border border-ink/10">
+        <div class="bg-white h-20 flex items-center justify-center label text-body/35">Carrier</div>
+        <div class="bg-white h-20 flex items-center justify-center label text-body/35">Carrier</div>
+        <div class="bg-white h-20 flex items-center justify-center label text-body/35">Carrier</div>
+        <div class="bg-white h-20 flex items-center justify-center label text-body/35">Carrier</div>
+        <div class="bg-white h-20 flex items-center justify-center label text-body/35">Carrier</div>
+        <div class="bg-white h-20 flex items-center justify-center label text-body/35">Carrier</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= FAQS =========================
+     Ruth's document has the FAQS heading only. These are drafted
+     for her review — replace or edit before launch. -->
+<section id="faq" class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+    <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-12 lg:gap-16">
+
+      <div class="reveal">
+        <h2 class="display text-ink text-[clamp(2.11rem,4.4vw,2.99rem)] leading-none">FAQs</h2>
+        <p class="mt-6 text-[.975rem] leading-[1.75] text-body max-w-[34ch]">
+          Still unsure? Ask Ruth directly — she'd rather answer the question than have you guess.
+        </p>
+        <a href="#consult" class="btn-violet label px-7 py-3.5 inline-flex items-center gap-2 mt-6">
+          Ask a question <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div id="faqList" class="border-t border-ink/15">
+        <div class="faq border-b border-ink/15">
+          <button class="faq-q w-full flex items-start justify-between gap-6 text-left py-6" aria-expanded="false">
+            <span class="display text-ink text-[1.06rem]">Do I need to have my numbers together before we talk?</span>
+            <i data-lucide="chevron-down" class="faq-i w-5 h-5 text-violet shrink-0 mt-1 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-a hidden pb-6 -mt-1"><p class="text-[.975rem] leading-[1.75] text-body max-w-[62ch]">No. Most people arrive with a rough idea and a few worries. The first call is for understanding what you already have — pulling statements comes later, and Ruth will tell you exactly which ones.</p></div>
+        </div>
+        <div class="faq border-b border-ink/15">
+          <button class="faq-q w-full flex items-start justify-between gap-6 text-left py-6" aria-expanded="false">
+            <span class="display text-ink text-[1.06rem]">What does the discovery call cost?</span>
+            <i data-lucide="chevron-down" class="faq-i w-5 h-5 text-violet shrink-0 mt-1 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-a hidden pb-6 -mt-1"><p class="text-[.975rem] leading-[1.75] text-body max-w-[62ch]">Nothing. It's a virtual call on Zoom, and so is your plan review. If you put a product in place, the issuing carrier compensates the agent — Ruth will show you how that works before you decide anything.</p></div>
+        </div>
+        <div class="faq border-b border-ink/15">
+          <button class="faq-q w-full flex items-start justify-between gap-6 text-left py-6" aria-expanded="false">
+            <span class="display text-ink text-[1.06rem]">I already have life insurance through work. Isn't that enough?</span>
+            <i data-lucide="chevron-down" class="faq-i w-5 h-5 text-violet shrink-0 mt-1 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-a hidden pb-6 -mt-1"><p class="text-[.975rem] leading-[1.75] text-body max-w-[62ch]">Group coverage is a good start, and it usually ends when the job does. It's also typically a multiple of salary rather than a number tied to your mortgage, your kids, and how long your household would actually need support. We look at the gap between the two.</p></div>
+        </div>
+        <div class="faq border-b border-ink/15">
+          <button class="faq-q w-full flex items-start justify-between gap-6 text-left py-6" aria-expanded="false">
+            <span class="display text-ink text-[1.06rem]">What if I'm carrying a lot of debt right now?</span>
+            <i data-lucide="chevron-down" class="faq-i w-5 h-5 text-violet shrink-0 mt-1 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-a hidden pb-6 -mt-1"><p class="text-[.975rem] leading-[1.75] text-body max-w-[62ch]">That's a common starting point, not a disqualifier. Ruth has helped people cut their scheduled debt payoff time in half without adding more to their monthly budget, simply by helping their money work differently.</p></div>
+        </div>
+        <div class="faq border-b border-ink/15">
+          <button class="faq-q w-full flex items-start justify-between gap-6 text-left py-6" aria-expanded="false">
+            <span class="display text-ink text-[1.06rem]">Do you only work with families, or with agents too?</span>
+            <i data-lucide="chevron-down" class="faq-i w-5 h-5 text-violet shrink-0 mt-1 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-a hidden pb-6 -mt-1"><p class="text-[.975rem] leading-[1.75] text-body max-w-[62ch]">Both. Families are the heart of the work, and Ruth also coaches agents and entrepreneurs — asking questions, connecting the dots, and helping people see opportunities they may not have seen on their own.</p></div>
+        </div>
+        <div class="faq border-b border-ink/15">
+          <button class="faq-q w-full flex items-start justify-between gap-6 text-left py-6" aria-expanded="false">
+            <span class="display text-ink text-[1.06rem]">What do I get after the assessment?</span>
+            <i data-lucide="chevron-down" class="faq-i w-5 h-5 text-violet shrink-0 mt-1 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-a hidden pb-6 -mt-1"><p class="text-[.975rem] leading-[1.75] text-body max-w-[62ch]">A four-page Financial Protection &amp; Legacy Scorecard, personalised to your answers: your score, where you're already strong, the two areas worth reviewing first, and simple next steps. No pressure and no obligation to book anything.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= NEWSLETTER / CONSULT ========================= -->
+<section id="consult" class="bg-mist py-20 sm:py-28 border-t border-ink/10">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+    <div class="border border-ink/15 grid lg:grid-cols-2 bg-white">
+
+      <div class="p-8 sm:p-12 lg:p-14 border-b lg:border-b-0 lg:border-r border-ink/15">
+        <h2 class="display text-ink text-[clamp(1.67rem,3.17vw,2.29rem)] leading-[1.12]">
+          Stay ahead of the game.
+        </h2>
+        <p class="mt-5 text-[.975rem] leading-[1.75] text-body max-w-[42ch]">
+          Get monthly insights from Ruth straight to your inbox — real stories, money mindset shifts,
+          and legacy-level strategies you won't find on social. No fluff. Just tools to help you
+          retire with clarity and live with purpose.
+        </p>
+
+        <form id="newsForm" class="mt-8" novalidate>
+          <label for="nName" class="label text-violet block mb-2">Name</label>
+          <input id="nName" type="text" class="field w-full px-4 py-3.5 text-[.95rem]" autocomplete="given-name">
+
+          <label for="nEmail" class="label text-violet block mb-2 mt-5">Email address</label>
+          <input id="nEmail" type="email" class="field w-full px-4 py-3.5 text-[.95rem]" autocomplete="email">
+
+          <label for="nMsg" class="label text-violet block mb-2 mt-5">Leave a message</label>
+          <textarea id="nMsg" rows="3" class="field w-full px-4 py-3.5 text-[.95rem]"></textarea>
+
+          <p id="nError" class="text-[.85rem] text-[#B3261E] mt-2 hidden"></p>
+          <button type="submit" class="btn-gold label px-8 py-4 mt-5 w-full sm:w-auto">Submit</button>
+          <p id="nOk" class="hidden text-[.95rem] text-ink mt-4 items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-violet"></i> Thank you — you're on the list.
+          </p>
+        </form>
+      </div>
+
+      <div class="p-8 sm:p-12 lg:p-14 bg-ink text-white">
+        <span class="label text-gold">Rather just talk?</span>
+        <h2 class="display text-[clamp(1.67rem,3.17vw,2.29rem)] leading-[1.12] mt-4">
+          Let's talk about what's next.
+        </h2>
+        <p class="mt-5 text-[.975rem] leading-[1.75] text-white/70 max-w-[38ch]">
+          A discovery call with Ruth, virtually through Zoom. Bring your questions and whatever
+          paperwork you can find — that's plenty to start.
+        </p>
+        <div class="mt-8 space-y-3">
+          <a href="tel:+18186205797" class="flex items-center gap-3 text-white/85 hover:text-gold transition text-[1.0625rem]">
+            <i data-lucide="phone" class="w-4 h-4 text-gold"></i> (818) 620-5797
+          </a>
+          <a href="mailto:ruth@ruthslingo.com" class="flex items-center gap-3 text-white/85 hover:text-gold transition text-[1.0625rem]">
+            <i data-lucide="mail" class="w-4 h-4 text-gold"></i> ruth@ruthslingo.com
+          </a>
+        </div>
+        <!-- SWAP: point at the real scheduler (Calendly / GoHighLevel) when it exists -->
+        <a href="mailto:ruth@ruthslingo.com?subject=Discovery%20call" class="inline-flex items-center gap-2 btn-gold label mt-9 px-8 py-4">
+          Schedule a time with Ruth <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="bg-ink text-white/70 pt-16 pb-10">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/15">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3">
+          <span class="bg-white p-2 inline-flex"><img src="assets/logo-rs.png" alt="" class="h-9 w-auto"></span> <!-- SWAP -->
+          <span class="leading-none">
+            <span class="block display text-[19px] tracking-[.14em] font-semibold text-white">SLINGO</span>
+            <span class="block label text-[9px] tracking-[.28em] text-gold mt-[3px]">Financial Services</span>
+          </span>
+        </div>
+        <p class="mt-6 text-[.975rem] leading-[1.75] max-w-[36ch]">
+          Educate. Empower. Create Legacy. Founded by Ruth Slingo in 2019 to create, implement, and
+          review your financial plans.
+        </p>
+      </div>
+
+      <div>
+        <p class="label text-gold mb-5">Quick links</p>
+        <ul class="space-y-3 text-[.95rem]">
+          <li><a href="#about" class="hover:text-white transition">Ruth Slingo</a></li>
+          <li><a href="#services" class="hover:text-white transition">Services</a></li>
+          <li><a href="#assessment" class="hover:text-white transition">Financial Readiness Assessment</a></li>
+          <li><a href="#testimonials" class="hover:text-white transition">Testimonials</a></li>
+          <li><a href="#faq" class="hover:text-white transition">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="label text-gold mb-5">Contact</p>
+        <ul class="space-y-3 text-[.95rem]">
+          <li><a href="tel:+18186205797" class="hover:text-white transition">(818) 620-5797</a></li>
+          <li><a href="mailto:ruth@ruthslingo.com" class="hover:text-white transition">ruth@ruthslingo.com</a></li>
+        </ul>
+        <p class="label text-gold mb-4 mt-8">Legal</p>
+        <ul class="space-y-3 text-[.95rem]">
+          <li><a href="#" class="hover:text-white transition">Privacy policy</a></li>
+          <li><a href="#" class="hover:text-white transition">Terms of use</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Licensing / suitability notice — have Ruth's compliance review confirm the wording. -->
+    <p class="text-[.8125rem] leading-[1.7] text-white/45 mt-8 max-w-[92ch]">
+      Ruth Slingo is a licensed insurance agent. Insurance and annuity products are offered through
+      Slingo Financial Services and issued by third-party carriers; availability, features, and
+      riders vary by state and are subject to carrier underwriting. Product guarantees are backed
+      solely by the claims-paying ability of the issuing carrier. Nothing on this page is tax, legal,
+      or investment advice, and the Financial Readiness Assessment result is an educational estimate,
+      not a recommendation. Please consult your own tax or legal professional regarding your situation.
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-between gap-4 mt-8 pt-8 border-t border-white/12">
+      <p class="text-[.8125rem] text-white/45">© <span id="year">2026</span> Slingo Financial Services. All rights reserved.</p>
+      <p class="text-[.8125rem] text-white/45">Protect What Matters Most™</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  if (window.lucide) lucide.createIcons();
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ------------------------------------------------------------ nav drawer */
+  var navToggle = document.getElementById('navToggle');
+  var navDrawer = document.getElementById('navDrawer');
+  navToggle.addEventListener('click', function () {
+    var open = navDrawer.classList.toggle('hidden') === false;
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  navDrawer.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      navDrawer.classList.add('hidden');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ------------------------------------------------------- scroll reveals */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var revObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } });
+    }, { threshold: .15 });
+    reveals.forEach(function (el) { revObs.observe(el); });
+  }
+
+  /* ----------------------------------------------------------------- FAQ */
+  var faqs = Array.prototype.slice.call(document.querySelectorAll('#faqList .faq'));
+  faqs.forEach(function (faq) {
+    var btn = faq.querySelector('.faq-q');
+    var panel = faq.querySelector('.faq-a');
+    var icon = faq.querySelector('.faq-i');
+    btn.addEventListener('click', function () {
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      faqs.forEach(function (other) {
+        other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        other.querySelector('.faq-a').classList.add('hidden');
+        other.querySelector('.faq-i').style.transform = '';
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        panel.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+
+  /* ================================================================
+     NEWSLETTER FORM — front-end only. Nothing is transmitted; it
+     validates and shows a success state. Wire to GoHighLevel or
+     Formspree by POSTing in the submit handler below.
+     ================================================================ */
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+
+  document.getElementById('newsForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('nName').value.trim();
+    var email = document.getElementById('nEmail').value.trim();
+    var err = document.getElementById('nError');
+    var ok = document.getElementById('nOk');
+    if (!name) { err.textContent = 'Add your name.'; err.classList.remove('hidden'); ok.classList.add('hidden'); document.getElementById('nName').focus(); return; }
+    if (!validEmail(email)) { err.textContent = 'That email address doesn’t look right — check it and try again.'; err.classList.remove('hidden'); ok.classList.add('hidden'); document.getElementById('nEmail').focus(); return; }
+    err.classList.add('hidden');
+    ok.classList.remove('hidden'); ok.classList.add('flex');
+  });
+
+})();
+</script>
+</body>
+</html>
