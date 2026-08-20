@@ -1,0 +1,7 @@
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# screenshot + verification harnesses generated while working
+_*.html

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empower — Slingo Financial Services</title>
+<meta name="description" content="You don’t need more information. You need a strategy for what to do with it. Coaching for insurance professionals, entrepreneurs, and people building a personal brand.">
+
+<!--
+  ============================================================================
+  SLINGO FINANCIAL SERVICES — landing page
+  ============================================================================
+  Structure and copy follow Ruth's own document,
+  "protect what you've built. educate. empower. create legacy.pdf".
+  Brand colours sampled from her reel end-card. See BRIEF.md.
+
+  Type:  Fraunces (display) + DM Sans (body / UI).
+  Signature: "Your Financial Floor Plan" — the assessment drawn as a plan view,
+  which is Ruth's own idea in her words: 25 years an interior designer,
+  "learning how to look at the whole picture".
+
+  IMAGE SWAP LIST — every photo, all in /assets, each tagged "SWAP" below:
+    hero.jpg             hero photograph — Ruth's own 1920x1080 shot
+    logo-rs.png          the real RS monogram, white keyed to transparent
+    ruth-portrait.jpg    Ruth Slingo bio portrait — her own headshot
+    card-educate.jpg     "Let's talk about what's next?" card 1   (reel b-roll)
+    card-empower.jpg     card 2                                   (reel b-roll)
+    card-legacy.jpg      card 3                                   (reel b-roll)
+  Client originals are kept untouched in /assets/_source.
+  ============================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    '#25135C',   // deep violet — dark bands, headings
+        violet: '#5819BC',   // brand purple — secondary actions, rules
+        mark:   '#6E18C0',   // logo mark purple
+        bright: '#7F47FD',   // bright violet — accents, the medallion field
+        lilac:  '#EDE4FB',   // the card fill from Ruth's document
+        mist:   '#F7F5FC',   // soft neutral section ground
+        gold:   '#D9A441',   // Ruth's CTA colour, and her medallion ring
+        body:   '#3E3459'    // body copy
+      },
+      fontFamily: {
+        display: ['Fraunces', 'Georgia', 'serif'],
+        sans:    ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+  :root { --ink:#25135C; --violet:#5819BC; --bright:#7F47FD; --gold:#D9A441; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+  body { font-family: "DM Sans", system-ui, sans-serif; color:#3E3459; background:#fff; -webkit-font-smoothing: antialiased; }
+
+  /* Fraunces: soft old-style serif. SOFT 25 warms the terminals, WONK 0 switches
+     off the quirky alternates. It has true italics, so emphasis is real. */
+  .display { font-family:Fraunces, Georgia, serif; font-optical-sizing:auto; font-weight:600; font-variation-settings:"SOFT" 25, "WONK" 0; letter-spacing:-.005em; }
+  .display em, .display i { font-style:italic; font-weight:500; }
+
+  /* Small tracked uppercase label — every eyebrow, field label and callout. */
+  .label { font-size:.6875rem; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }
+
+  /* Hairline rules that draw themselves in, like a plan being drafted. */
+  .rule { transform-origin:left center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .rule { transform:scaleX(0); animation: draw .7s cubic-bezier(.22,1,.36,1) forwards; }
+    @keyframes draw { to { transform:scaleX(1); } }
+    .reveal { opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1); }
+    .reveal.in { opacity:1; transform:none; }
+  }
+
+  :focus-visible { outline:2px solid var(--gold); outline-offset:3px; border-radius:2px; }
+
+  /* Buttons — gold is the "start something" action, exactly as in Ruth's document.
+     Violet is secondary. Nothing gets a gradient or a drop shadow. */
+  .btn-gold    { background:var(--gold); color:var(--ink); transition:background .25s ease; }
+  .btn-gold:hover { background:#C28F2C; }
+  .btn-white   { background:#fff; color:var(--ink); transition:background .25s ease; }
+  .btn-white:hover { background:#EDE4FB; }
+  .btn-violet  { background:var(--violet); color:#fff; transition:background .25s ease; }
+  .btn-violet:hover { background:var(--ink); }
+  .btn-outline { border:1.5px solid var(--ink); color:var(--ink); transition:background .25s ease, color .25s ease; }
+  .btn-outline:hover { background:var(--ink); color:#fff; }
+  .btn-ghost   { border:1.5px solid rgba(255,255,255,.5); color:#fff; transition:background .25s ease, border-color .25s ease; }
+  .btn-ghost:hover { background:rgba(255,255,255,.12); border-color:#fff; }
+
+  /* "What's next?" cards — hairline plate, photograph eases in on hover. */
+  .card { position:relative; background:#fff; border:1px solid #E6DFF5; overflow:hidden;
+          transition:border-color .35s ease; }
+  .card:hover { border-color:#CDBFEC; }
+  @media (prefers-reduced-motion: reduce) {
+    .card img { transition:none !important; }
+    .card:hover img { transform:none !important; }
+  }
+
+  /* Spec tile — hairline card, no shadow; hover draws a rule. */
+  .tile { position:relative; background:#fff; border:1px solid #E6DFF5; transition:border-color .3s ease; }
+  .tile::after { content:""; position:absolute; left:0; bottom:-1px; height:2px; width:0; background:var(--violet); transition:width .35s cubic-bezier(.22,1,.36,1); }
+  .tile:hover { border-color:#CDBFEC; }
+  .tile:hover::after { width:100%; }
+
+  input, textarea { font-family:"DM Sans", sans-serif; }
+  .field { border:1px solid #DDD3F0; background:#fff; }
+  .field:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(88,25,188,.12); outline:none; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<header id="nav" class="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#E9E2F7]">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+    <div class="flex items-center justify-between h-[72px]">
+
+      <a href="index.html" class="flex items-center gap-3 shrink-0">
+        <img src="assets/logo-rs.png" alt="" class="h-11 w-auto"> <!-- SWAP -->
+        <span class="leading-none">
+          <span class="block display text-[19px] tracking-[.14em] font-semibold text-ink">SLINGO</span>
+          <span class="block label text-[9px] tracking-[.28em] text-violet mt-[3px]">Financial Services</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary">
+        <a href="index.html#home"         class="label text-ink/70 hover:text-violet transition">Home</a>
+        <a href="index.html#about"        class="label text-ink/70 hover:text-violet transition">About</a>
+        <a href="index.html#services"     class="label text-ink/70 hover:text-violet transition">Services</a>
+        <a href="index.html#assessment"   class="label text-ink/70 hover:text-violet transition">Resources</a>
+        <a href="index.html#testimonials" class="label text-ink/70 hover:text-violet transition">Testimonials</a>
+        <a href="index.html#faq"          class="label text-ink/70 hover:text-violet transition">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html#consult" class="hidden sm:inline-flex btn-violet label px-6 py-3">Schedule consultation</a>
+        <button id="navToggle" class="lg:hidden p-2 -mr-2 text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="navDrawer" class="lg:hidden hidden border-t border-[#E9E2F7] bg-white">
+    <nav class="mx-auto max-w-[1300px] px-5 sm:px-8 py-5 flex flex-col gap-1" aria-label="Mobile">
+      <a href="index.html#home"         class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Home</a>
+      <a href="index.html#about"        class="label py-3 text-ink/80 border-b border-[#F1ECFA]">About</a>
+      <a href="index.html#services"     class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Services</a>
+      <a href="index.html#assessment"   class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Resources</a>
+      <a href="index.html#testimonials" class="label py-3 text-ink/80 border-b border-[#F1ECFA]">Testimonials</a>
+      <a href="index.html#faq"          class="label py-3 text-ink/80">FAQ</a>
+      <a href="index.html#consult" class="btn-violet label px-6 py-3 text-center mt-4">Schedule consultation</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="bg-ink text-white pt-[72px]">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+    <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-16 items-center py-16 sm:py-20 lg:py-24">
+
+      <div>
+        <div class="flex items-center gap-4 mb-7">
+          <span class="label text-gold whitespace-nowrap">Empower.</span>
+          <span class="rule h-px flex-1 bg-white/25" style="animation-delay:.15s"></span>
+        </div>
+
+        <h1 class="display text-[clamp(2.1rem,5vw,3.4rem)] leading-[1.08]">You don’t need more information.<br>You need a strategy for what to do with it.</h1>
+
+        <p class="mt-7 text-[1.0625rem] sm:text-[1.125rem] leading-[1.8] text-white/80 max-w-[52ch]">
+          Whether you’re building an insurance career, growing a business, developing your brand, or figuring out your next move — I’ll help you turn what you already know into action.
+        </p>
+
+        <a href="#building" class="btn-gold label px-9 py-4 inline-flex items-center gap-2 mt-9">
+          Find my next step <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <div class="justify-self-center lg:justify-self-end w-full max-w-[520px]">
+        <img src="assets/card-empower.jpg" alt="Ruth Slingo presenting" class="w-full aspect-[4/3] object-cover"> <!-- SWAP -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHERE ARE YOU RIGHT NOW? ===================== -->
+<section class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <div class="text-center max-w-[720px] mx-auto mb-14 reveal">
+      <h2 class="display text-ink text-[clamp(1.7rem,3.8vw,2.6rem)] leading-[1.15]">Where are you right now?</h2>
+      
+    </div>
+    <div class="grid gap-5 max-w-[980px] mx-auto">
+      <article class="tile grid sm:grid-cols-[1fr_240px] items-stretch">
+        <div class="p-7 sm:p-9">
+          <div class="flex items-center gap-4 mb-5">
+            <span class="w-11 h-11 shrink-0 flex items-center justify-center bg-violet/10 text-violet"><i data-lucide="users" class="w-5 h-5"></i></span>
+            <h3 class="display text-ink text-[1.3rem] leading-tight">I’m an insurance professional</h3>
+          </div>
+          <p class="text-[.975rem] leading-[1.75] text-body max-w-[54ch]">I want to increase my knowledge, improve my conversations, grow production, and build a business that creates freedom.</p>
+          <a href="#building" class="label text-violet inline-flex items-center gap-2 mt-6">
+            Explore agent coaching <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <!-- SWAP: a photograph for each path -->
+        <img src="assets/card-educate.jpg" alt="" class="hidden sm:block w-full h-full object-cover">
+      </article>
+      <article class="tile grid sm:grid-cols-[1fr_240px] items-stretch">
+        <div class="p-7 sm:p-9">
+          <div class="flex items-center gap-4 mb-5">
+            <span class="w-11 h-11 shrink-0 flex items-center justify-center bg-violet/10 text-violet"><i data-lucide="lightbulb" class="w-5 h-5"></i></span>
+            <h3 class="display text-ink text-[1.3rem] leading-tight">I’m an entrepreneur</h3>
+          </div>
+          <p class="text-[.975rem] leading-[1.75] text-body max-w-[54ch]">I have a business, but I need clarity around my message, marketing, systems, growth, or next move.</p>
+          <a href="#building" class="label text-violet inline-flex items-center gap-2 mt-6">
+            Explore business coaching <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <!-- SWAP: a photograph for each path -->
+        <img src="assets/card-empower.jpg" alt="" class="hidden sm:block w-full h-full object-cover">
+      </article>
+      <article class="tile grid sm:grid-cols-[1fr_240px] items-stretch">
+        <div class="p-7 sm:p-9">
+          <div class="flex items-center gap-4 mb-5">
+            <span class="w-11 h-11 shrink-0 flex items-center justify-center bg-violet/10 text-violet"><i data-lucide="star" class="w-5 h-5"></i></span>
+            <h3 class="display text-ink text-[1.3rem] leading-tight">I’m building my personal brand</h3>
+          </div>
+          <p class="text-[.975rem] leading-[1.75] text-body max-w-[54ch]">I know I have something to offer. I need help turning my experience and ideas into a brand people understand and trust.</p>
+          <a href="#building" class="label text-violet inline-flex items-center gap-2 mt-6">
+            Explore brand coaching <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+        <!-- SWAP: a photograph for each path -->
+        <img src="assets/card-legacy.jpg" alt="" class="hidden sm:block w-full h-full object-cover">
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MY JOURNEY. YOUR ADVANTAGE. ===================== -->
+<section class="bg-mist py-16 sm:py-20 border-y border-ink/10">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+    <div class="bg-lilac p-8 sm:p-12 max-w-[900px] mx-auto">
+      <h2 class="display text-ink text-[clamp(1.6rem,3.4vw,2.3rem)] leading-[1.15]">My journey. Your advantage.</h2>
+      <p class="mt-6 text-[1.0625rem] leading-[1.8] text-body max-w-[58ch]">
+        I spent 25+ years as an interior designer before building an entirely different career and
+        business. I know what it’s like to start over, learn new skills, and build something from the
+        ground up.
+      </p>
+      <p class="mt-4 text-[1.0625rem] leading-[1.8] text-body max-w-[58ch]">
+        You don’t have to have everything figured out before you start. You just need the right plan
+        and the right support.
+      </p>
+      <p class="display text-violet text-[1.5rem] italic mt-8">Ruth</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LET'S TALK ABOUT WHAT YOU'RE BUILDING ===================== -->
+<section id="building" class="bg-white py-20 sm:py-28">
+  <div class="mx-auto max-w-[860px] px-5 sm:px-8">
+
+    <div class="text-center max-w-[720px] mx-auto mb-14 reveal">
+      <h2 class="display text-ink text-[clamp(1.7rem,3.8vw,2.6rem)] leading-[1.15]">Let’s talk about what you’re building.</h2>
+      
+    </div>
+
+    <form class="js-form border border-ink/15 p-7 sm:p-10">
+      <div class="grid sm:grid-cols-2 gap-5">
+
+          <div>
+            <label for="fName" class="label text-violet block mb-2">First name</label>
+            <input id="fName" type="text" class="field w-full px-4 py-3.5 text-[.95rem]">
+          </div>
+
+          <div>
+            <label for="lName" class="label text-violet block mb-2">Last name</label>
+            <input id="lName" type="text" class="field w-full px-4 py-3.5 text-[.95rem]">
+          </div>
+
+          <div>
+            <label for="email" class="label text-violet block mb-2">Email</label>
+            <input id="email" type="email" class="field w-full px-4 py-3.5 text-[.95rem]">
+          </div>
+
+          <div>
+            <label for="phone" class="label text-violet block mb-2">Phone</label>
+            <input id="phone" type="tel" class="field w-full px-4 py-3.5 text-[.95rem]">
+          </div>
+      </div>
+
+      <fieldset class="mt-8">
+        <legend class="label text-violet mb-4">I am a</legend>
+        <div class="grid sm:grid-cols-2 gap-x-8">
+
+              <label class="flex items-start gap-3 py-1.5 cursor-pointer">
+                <input type="radio" name="iam" value="Insurance professional" class="mt-1 w-4 h-4 border-[#DDD3F0] text-violet focus:ring-violet">
+                <span class="text-[.95rem] leading-[1.5] text-body">Insurance professional</span>
+              </label>
+              <label class="flex items-start gap-3 py-1.5 cursor-pointer">
+                <input type="radio" name="iam" value="Building a personal brand" class="mt-1 w-4 h-4 border-[#DDD3F0] text-violet focus:ring-violet">
+                <span class="text-[.95rem] leading-[1.5] text-body">Building a personal brand</span>
+              </label>
+              <label class="flex items-start gap-3 py-1.5 cursor-pointer">
+                <input type="radio" name="iam" value="Entrepreneur" class="mt-1 w-4 h-4 border-[#DDD3F0] text-violet focus:ring-violet">
+                <span class="text-[.95rem] leading-[1.5] text-body">Entrepreneur</span>
+              </label>
+              <label class="flex items-start gap-3 py-1.5 cursor-pointer">
+                <input type="radio" name="iam" value="Exploring what’s next" class="mt-1 w-4 h-4 border-[#DDD3F0] text-violet focus:ring-violet">
+                <span class="text-[.95rem] leading-[1.5] text-body">Exploring what’s next</span>
+              </label>
+              <label class="flex items-start gap-3 py-1.5 cursor-pointer">
+                <input type="radio" name="iam" value="Mompreneur" class="mt-1 w-4 h-4 border-[#DDD3F0] text-violet focus:ring-violet">
+                <span class="text-[.95rem] leading-[1.5] text-body">Mompreneur</span>
+              </label>
+        </div>
+      </fieldset>
+
+
+          <label for="challenge" class="label text-violet block mb-2 mt-7">What’s your biggest challenge right now?</label>
+          <textarea id="challenge" rows="4" placeholder="Tell me more…" class="field w-full px-4 py-3.5 text-[.95rem]"></textarea>
+
+          <label for="twelve" class="label text-violet block mb-2 mt-7">Where would you most like to be 12 months from now?</label>
+          <textarea id="twelve" rows="4" placeholder="Tell me more…" class="field w-full px-4 py-3.5 text-[.95rem]"></textarea>
+
+      <button type="submit" class="btn-gold label px-9 py-4 mt-8 w-full sm:w-auto">Let’s build what’s next</button>
+      <p class="js-ok hidden text-[.95rem] text-ink mt-4">Thank you — Ruth will be in touch shortly.</p>
+      <p class="js-err hidden text-[.85rem] text-[#B3261E] mt-4"></p>
+    </form>
+  </div>
+</section>
+
+
+<section class="bg-ink text-white py-16 sm:py-20">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+    <div class="grid sm:grid-cols-[1.3fr_.7fr] gap-10 items-center">
+      <div>
+        <h2 class="display text-[clamp(1.6rem,3.2vw,2.2rem)] leading-[1.2]">Not ready yet?<br>Let’s stay connected.</h2>
+        <p class="mt-4 text-[.975rem] leading-[1.75] text-white/70 max-w-[44ch]">Get tips, training invitations, and resources to help you grow.</p>
+        <form class="js-form mt-7 flex flex-wrap gap-2.5 max-w-[520px]">
+          <input type="email" placeholder="you@email.com" class="field flex-1 min-w-[220px] px-4 py-3.5 text-[.95rem] text-body">
+          <button type="submit" class="btn-gold label px-7 py-3.5">Keep me informed</button>
+          <p class="js-ok hidden w-full text-[.95rem] text-white mt-2">Thank you — it's on its way.</p>
+          <p class="js-err hidden w-full text-[.85rem] text-gold mt-2"></p>
+        </form>
+      </div>
+      <!-- SWAP: stand-in for the printed cover; drop the real artwork in here -->
+      <div class="justify-self-center sm:justify-self-end w-[190px] bg-white text-ink p-6 border-b-[6px] border-gold">
+        <p class="display text-[1.15rem] leading-[1.25]">Tools &amp; Training from Ruth Slingo</p>
+        <p class="label text-violet text-[8px] mt-6">Ruth Slingo</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="bg-ink text-white/70 pt-16 pb-10">
+  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/15">
+
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3">
+          <span class="bg-white p-2 inline-flex"><img src="assets/logo-rs.png" alt="" class="h-9 w-auto"></span> <!-- SWAP -->
+          <span class="leading-none">
+            <span class="block display text-[19px] tracking-[.14em] font-semibold text-white">SLINGO</span>
+            <span class="block label text-[9px] tracking-[.28em] text-gold mt-[3px]">Financial Services</span>
+          </span>
+        </div>
+        <p class="mt-6 text-[.975rem] leading-[1.75] max-w-[36ch]">
+          Educate. Empower. Create Legacy. Founded by Ruth Slingo in 2019 to create, implement, and
+          review your financial plans.
+        </p>
+      </div>
+
+      <div>
+        <p class="label text-gold mb-5">Quick links</p>
+        <ul class="space-y-3 text-[.95rem]">
+          <li><a href="index.html#about" class="hover:text-white transition">Ruth Slingo</a></li>
+          <li><a href="index.html#services" class="hover:text-white transition">Services</a></li>
+          <li><a href="index.html#assessment" class="hover:text-white transition">Financial Readiness Assessment</a></li>
+          <li><a href="index.html#testimonials" class="hover:text-white transition">Testimonials</a></li>
+          <li><a href="index.html#faq" class="hover:text-white transition">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="label text-gold mb-5">Contact</p>
+        <ul class="space-y-3 text-[.95rem]">
+          <li><a href="tel:+18186205797" class="hover:text-white transition">(818) 620-5797</a></li>
+          <li><a href="mailto:ruth@ruthslingo.com" class="hover:text-white transition">ruth@ruthslingo.com</a></li>
+        </ul>
+        <p class="label text-gold mb-4 mt-8">Legal</p>
+        <ul class="space-y-3 text-[.95rem]">
+          <li><a href="#" class="hover:text-white transition">Privacy policy</a></li>
+          <li><a href="#" class="hover:text-white transition">Terms of use</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Licensing / suitability notice — have Ruth's compliance review confirm the wording. -->
+    <p class="text-[.8125rem] leading-[1.7] text-white/45 mt-8 max-w-[92ch]">
+      Ruth Slingo is a licensed insurance agent. Insurance and annuity products are offered through
+      Slingo Financial Services and issued by third-party carriers; availability, features, and
+      riders vary by state and are subject to carrier underwriting. Product guarantees are backed
+      solely by the claims-paying ability of the issuing carrier. Nothing on this page is tax, legal,
+      or investment advice, and the Financial Readiness Assessment result is an educational estimate,
+      not a recommendation. Please consult your own tax or legal professional regarding your situation.
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-between gap-4 mt-8 pt-8 border-t border-white/12">
+      <p class="text-[.8125rem] text-white/45">© <span id="year">2026</span> Slingo Financial Services. All rights reserved.</p>
+      <p class="text-[.8125rem] text-white/45">Protect What Matters Most™</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.js"></script>
+<script>
+(function () {
+  'use strict';
+  if (window.lucide) lucide.createIcons();
+  var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+
+  /* nav drawer — same behaviour as the home page */
+  var navToggle = document.getElementById('navToggle');
+  var navDrawer = document.getElementById('navDrawer');
+  navToggle.addEventListener('click', function () {
+    var open = navDrawer.classList.toggle('hidden') === false;
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  navDrawer.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      navDrawer.classList.add('hidden');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* scroll reveals */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var obs = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: .15 });
+    reveals.forEach(function (el) { obs.observe(el); });
+  }
+
+  /* Forms are front-end only: validate, show a success state, transmit nothing.
+     Wire to GoHighLevel or Formspree by POSTing in this handler. */
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  document.querySelectorAll('.js-form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ok = form.querySelector('.js-ok');
+      var err = form.querySelector('.js-err');
+      var email = form.querySelector('input[type=email]');
+      var first = form.querySelector('input[type=text]');
+      if (first && !first.value.trim()) {
+        err.textContent = 'Add your first name so Ruth knows who she is speaking to.';
+        err.classList.remove('hidden'); ok.classList.add('hidden'); first.focus(); return;
+      }
+      if (email && !validEmail(email.value.trim())) {
+        err.textContent = 'That email address doesn\u2019t look right — check it and try again.';
+        err.classList.remove('hidden'); ok.classList.add('hidden'); email.focus(); return;
+      }
+      err.classList.add('hidden');
+      ok.classList.remove('hidden');
+    });
+  });
+})();
+</script>
+</body>
+</html>
