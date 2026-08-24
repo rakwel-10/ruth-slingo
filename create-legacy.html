@@ -14,7 +14,9 @@
   "protect what you've built. educate. empower. create legacy.pdf".
   Brand colours sampled from her reel end-card. See BRIEF.md.
 
-  Type:  Fraunces (display) + DM Sans (body / UI).
+  Type:  Ceasura (headings) + Peristiwa (heading accents) + DM Sans (body / UI).
+         Ceasura and Peristiwa are self-hosted from assets/fonts/ and fall
+         back to Fraunces until those files are supplied.
   Signature: "Your Financial Floor Plan" — the assessment drawn as a plan view,
   which is Ruth's own idea in her words: 25 years an interior designer,
   "learning how to look at the whole picture".
@@ -49,7 +51,7 @@ tailwind.config = {
         body:   '#3E3459'    // body copy
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
+        display: ['Ceasura', 'Fraunces', 'Georgia', 'serif'],
         sans:    ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
       }
     }
@@ -63,10 +65,30 @@ tailwind.config = {
   html { scroll-behavior: smooth; scroll-padding-top: 92px; }
   body { font-family: "DM Sans", system-ui, sans-serif; color:#3E3459; background:#fff; -webkit-font-smoothing: antialiased; }
 
-  /* Fraunces: soft old-style serif. SOFT 25 warms the terminals, WONK 0 switches
-     off the quirky alternates. It has true italics, so emphasis is real. */
-  .display { font-family:Fraunces, Georgia, serif; font-optical-sizing:auto; font-weight:600; font-variation-settings:"SOFT" 25, "WONK" 0; letter-spacing:-.005em; }
-  .display em, .display i { font-style:italic; font-weight:500; }
+  /* Headings: Ceasura, with Peristiwa on the accent words inside them.
+     Both are self-hosted — drop the files into assets/fonts/ (see the README
+     there) and they take over automatically. Until then these @font-face
+     rules resolve to nothing and headings fall back to Fraunces, so the page
+     never renders broken. */
+  @font-face {
+    font-family:"Ceasura";
+    src:url("assets/fonts/ceasura.woff2") format("woff2"),
+        url("assets/fonts/ceasura.otf")   format("opentype"),
+        url("assets/fonts/ceasura.ttf")   format("truetype");
+    font-weight:normal; font-style:normal; font-display:swap;
+  }
+  @font-face {
+    font-family:"Peristiwa";
+    src:url("assets/fonts/peristiwa.woff2") format("woff2"),
+        url("assets/fonts/peristiwa.otf")   format("opentype"),
+        url("assets/fonts/peristiwa.ttf")   format("truetype");
+    font-weight:normal; font-style:normal; font-display:swap;
+  }
+
+  /* Fraunces is the fallback: soft old-style serif, SOFT 25 warms the
+     terminals, WONK 0 switches off the quirky alternates. */
+  .display { font-family:"Ceasura", Fraunces, Georgia, serif; font-optical-sizing:auto; font-weight:600; font-synthesis-weight:none; font-variation-settings:"SOFT" 25, "WONK" 0; letter-spacing:-.005em; }
+  .display em, .display i { font-family:"Peristiwa", Fraunces, Georgia, serif; font-style:italic; font-weight:500; }
 
   /* Small tracked uppercase label — every eyebrow, field label and callout. */
   .label { font-size:.6875rem; letter-spacing:.22em; text-transform:uppercase; font-weight:500; }

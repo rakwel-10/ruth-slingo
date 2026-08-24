@@ -10,6 +10,12 @@ for f in hero.jpg logo-rs.png ruth-portrait.jpg scorecard.png \
          card-educate.jpg card-empower.jpg card-legacy.jpg; do
   cp "assets/$f" docs/assets/
 done
+
+# self-hosted heading fonts, if they have been supplied
+if ls assets/fonts/*.woff2 assets/fonts/*.otf assets/fonts/*.ttf >/dev/null 2>&1; then
+  mkdir -p docs/assets/fonts
+  cp assets/fonts/*.woff2 assets/fonts/*.otf assets/fonts/*.ttf docs/assets/fonts/ 2>/dev/null || true
+fi
 cat > docs/robots.txt <<'ROBOTS'
 # Client preview — not for indexing.
 User-agent: *
