@@ -7,7 +7,7 @@ rm -rf docs
 mkdir -p docs/assets
 cp index.html educate.html empower.html create-legacy.html docs/
 for f in hero.jpg logo-rs.png ruth-portrait.jpg scorecard.png \
-         card-educate.jpg card-empower.jpg card-legacy.jpg; do
+         card-educate.jpg card-empower.jpg card-legacy.jpg services-bed.jpg; do
   cp "assets/$f" docs/assets/
 done
 

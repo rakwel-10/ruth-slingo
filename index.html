@@ -28,6 +28,7 @@
     card-educate.jpg     "Let's talk about what's next?" card 1   (reel b-roll)
     card-empower.jpg     card 2                                   (reel b-roll)
     card-legacy.jpg      card 3                                   (reel b-roll)
+    services-bed.jpg     blurred bed behind the services section
   Client originals are kept untouched in /assets/_source.
   ============================================================================
 -->
@@ -446,9 +447,17 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ========================= SERVICES ========================= -->
-<section id="services" class="bg-mist py-20 sm:py-28 border-t border-ink/10">
-  <div class="mx-auto max-w-[1300px] px-5 sm:px-8">
+<!-- ========================= SERVICES =========================
+     Soft blurred bed behind this section. It is very light already, so it
+     carries a faint white veil to keep the white spec tiles reading as
+     tiles rather than dissolving into it. -->
+<section id="services" class="relative bg-mist py-20 sm:py-28 border-t border-ink/10 overflow-hidden">
+  <div class="absolute inset-0" aria-hidden="true">
+    <img src="assets/services-bed.jpg" alt="" class="w-full h-full object-cover"> <!-- SWAP -->
+    <div class="absolute inset-0 bg-white/45"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1300px] px-5 sm:px-8">
 
     <div class="max-w-[52ch] mb-14 reveal">
       <span class="label text-violet">What we put in place</span>
