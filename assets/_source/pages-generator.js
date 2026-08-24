@@ -20,7 +20,7 @@ const nav  = between('<header id="nav"', '</header>');
 const foot = between('<footer class="bg-ink', '</footer>');
 
 /* fail loudly rather than emit half a page */
-[['head', head, '</style>'], ['nav', nav, 'SLINGO'], ['footer', foot, 'Quick links']]
+[['head', head, '</style>'], ['nav', nav, 'logo-rs.png'], ['footer', foot, 'Quick links']]
   .forEach(([name, block, needle]) => {
     if (!block.includes(needle)) throw new Error(`generator: ${name} block looks truncated`);
   });
@@ -28,7 +28,7 @@ const foot = between('<footer class="bg-ink', '</footer>');
 /* nav + footer live on a sub-page, so same-page anchors must resolve to home */
 const resolve = html => html
   .replace(/href="#(home|about|services|assessment|testimonials|faq|consult)"/g, 'href="index.html#$1"')
-  .replace('href="index.html#home" class="flex items-center gap-3 shrink-0"', 'href="index.html" class="flex items-center gap-3 shrink-0"');
+  .replace('href="index.html#home" class="flex items-center shrink-0"', 'href="index.html" class="flex items-center shrink-0"');
 
 const NAV = resolve(nav);
 const FOOT = resolve(foot);
