@@ -196,7 +196,7 @@ tailwind.config = {
            class="w-full h-[40svh] min-h-[260px] max-h-[380px] object-cover object-[60%_center] sm:h-full sm:max-h-none sm:object-[66%_center] lg:object-center"> <!-- SWAP -->
     </div>
 
-    <div class="relative flex items-end lg:items-center pt-9 pb-12 sm:pt-16 sm:pb-14 lg:py-16
+    <div class="relative flex items-end lg:items-center pt-9 pb-12 sm:pt-12 sm:pb-12 lg:py-12
                 sm:min-h-[calc(100svh-112px)]">
       <div class="mx-auto w-full max-w-[1300px] px-5 sm:px-8">
         <div class="max-w-[32rem] lg:max-w-[42rem]">
@@ -216,10 +216,23 @@ tailwind.config = {
           </p>
 
           <div class="mt-9 sm:mt-10">
-            <a href="#assessment" class="btn-gold label px-9 py-4 inline-flex items-center gap-2">
+            <a href="#assessment" class="btn-violet label px-9 py-4 inline-flex items-center gap-2">
               Get started <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>
           </div>
+
+          <!-- Social proof directly under the primary action. Same PLACEHOLDER
+               quote pool as the testimonials section further down the page —
+               replace with a real, permissioned client quote before launch. -->
+          <figure class="mt-6 sm:mt-7 pt-5 border-t border-ink/12 max-w-[33rem] flex gap-4">
+            <div class="flex gap-[3px] text-gold shrink-0 pt-1" aria-label="5 out of 5">
+              <i data-lucide="star" class="w-[13px] h-[13px] fill-current"></i><i data-lucide="star" class="w-[13px] h-[13px] fill-current"></i><i data-lucide="star" class="w-[13px] h-[13px] fill-current"></i><i data-lucide="star" class="w-[13px] h-[13px] fill-current"></i><i data-lucide="star" class="w-[13px] h-[13px] fill-current"></i>
+            </div>
+            <div>
+              <blockquote class="text-[.9375rem] leading-[1.55] text-ink">“We came in worried about debt and left with a payoff date. Same budget, half the years.”</blockquote>
+              <figcaption class="label text-[10px] text-body/60 mt-1.5">Placeholder · replace</figcaption>
+            </div>
+          </figure>
         </div>
       </div>
     </div>
