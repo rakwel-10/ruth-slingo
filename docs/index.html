@@ -189,9 +189,11 @@ tailwind.config = {
 <!-- ========================= HERO =========================
      A 20px white frame on all four sides, then the photograph. Still one
      screen tall overall: 72px nav + 20px + plate + 20px. The copy inside sits
-     on the same 1300px grid as every section below. -->
+     on the same 1300px grid as every section below.
+     The current photograph is high-key, so the copy is set in ink rather than
+     white, and the accent word is violet — gold on white measures ~2:1. -->
 <section id="home" class="bg-white pt-[92px] px-5 pb-5">
-  <div class="relative w-full overflow-hidden bg-[#140829] text-white">
+  <div class="relative w-full overflow-hidden bg-white text-ink border border-ink/10">
 
     <div class="relative sm:absolute sm:inset-0">
       <img src="assets/hero.jpg" alt="Ruth Slingo"
@@ -202,16 +204,16 @@ tailwind.config = {
                 sm:min-h-[calc(100svh-112px)]">
       <div class="mx-auto w-full max-w-[1300px] px-5 sm:px-8">
         <div class="max-w-[32rem] lg:max-w-[42rem]">
-          <h1 class="display leading-[1.02] text-[clamp(2.07rem,5.63vw,3.87rem)]">
+          <h1 class="display text-ink leading-[1.02] text-[clamp(2.07rem,5.63vw,3.87rem)]">
             Protect what<br>you've built.
           </h1>
-          <p class="display mt-4 leading-[1.15] text-[clamp(1.32rem,3.26vw,2.42rem)]">
-            Educate. <span class="text-gold">Empower.</span> <em class="font-normal">Create Legacy</em>
+          <p class="display text-ink mt-4 leading-[1.15] text-[clamp(1.32rem,3.26vw,2.42rem)]">
+            Educate. <span class="text-violet">Empower.</span> <em class="font-normal">Create Legacy</em>
           </p>
 
-          <span class="rule block h-px w-40 bg-white/40 my-7 sm:my-8" style="animation-delay:.2s"></span>
+          <span class="rule block h-px w-40 bg-ink/25 my-7 sm:my-8" style="animation-delay:.2s"></span>
 
-          <p class="text-[1.0625rem] sm:text-[1.125rem] leading-[1.75] text-white/85 max-w-[46ch]">
+          <p class="text-[1.0625rem] sm:text-[1.125rem] leading-[1.75] text-body max-w-[46ch]">
             Making and defining you a road map for what it means to empower, build wealth, and create a
             legacy. Through story-first financial strategy, road mapping your goals, and accessible
             education — Ruth's here to help you plan a life that outlives you.
